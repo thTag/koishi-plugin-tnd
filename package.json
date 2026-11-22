@@ -1,6 +1,6 @@
 {
   "name": "koishi-plugin-novel-downloader",
-  "version": "2.0.3",
+  "version": "2.0.4",
   "description": "番茄小说下载器 Koishi 插件（只对接用户自建的 TND，与番茄/抖音无关）",
   "main": "lib/index.js",
   "typings": "lib/index.d.ts",
@@ -59,7 +59,7 @@
   },
   "devDependencies": {
     "@koishijs/plugin-mock": "^2.6.6",
-    "@types/node": "^22.16.0",
-    "typescript": "^5.8.0"
+    "@types/node": "^26.6.6",
+    "typescript": "^7.0.2"
   }
 }
