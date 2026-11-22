@@ -1,5 +1,8 @@
 # koishi-plugin-novel-downloader
 
+> 🤖 **本插件由 AI 生成**：代码、文档与测试均由 AI 产出，作者负责提需求与验收。
+> 💬 欢迎加入叹号のBot小窝：**1065333145** —— <https://qm.qq.com/q/292RK9sYDK>
+
 > 2.0.0 起非 OneBot 适配器（含 QQ 官方）发送文件改为返回消息元素，修复官机发送时崩进程的问题。变更见 [CHANGELOG](CHANGELOG.md)。
 
 在 Koishi 里搜索、预览并下载小说（对接**你自己部署**的 [TND](https://github.com/zhongbai2333/Tomato-Novel-Downloader) 服务）。
