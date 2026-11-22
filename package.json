@@ -31,11 +31,11 @@
   "license": "MIT",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/th-dd/koishi-plugin-tnd.git"
+    "url": "git+https://github.com/thTag/koishi-plugin-tnd.git"
   },
-  "homepage": "https://github.com/th-dd/koishi-plugin-tnd#readme",
+  "homepage": "https://github.com/thTag/koishi-plugin-tnd#readme",
   "bugs": {
-    "url": "https://github.com/th-dd/koishi-plugin-tnd/issues"
+    "url": "https://github.com/thTag/koishi-plugin-tnd/issues"
   },
   "peerDependencies": {
     "koishi": "^4.17.0",
