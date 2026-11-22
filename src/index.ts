@@ -25,8 +25,8 @@ export const inject = { required: [], optional: ['puppeteer'] }
 export interface Config extends TndConfig {}
 
 export const Config: Schema<Config> = Schema.object({
-  apiBase: Schema.string().required().description('TND 服务地址，如 https://tnd.th-dd.top'),
-  apiPassword: Schema.string().description('TND 服务密码锁密码，服务未加锁时留空'),
+  apiBase: Schema.string().required().description('你自己部署的 TND 服务地址，如 http://127.0.0.1:18423（部署见 README「自建 TND 服务」）'),
+  apiPassword: Schema.string().description('TND 服务密码锁密码（TOMATO_WEB_PASSWORD），服务未加锁时留空'),
   maxSearchResults: Schema.number().default(20).min(1).max(50).description('搜索结果最大显示数量'),
   initialWait: Schema.number().default(8000).description('创建任务后首次轮询前的等待时间 (毫秒)'),
   pollInterval: Schema.number().default(5000).description('任务进度轮询间隔 (毫秒)'),

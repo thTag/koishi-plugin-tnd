@@ -27,7 +27,7 @@ assert.strictEqual(name, 'novel-downloader')
 assert.deepStrictEqual(inject, { required: [], optional: ['puppeteer'] })
 assert.ok(Config, 'Config 缺失')
 
-const config = { apiBase: 'https://tnd.th-dd.top', apiPassword: '', maxSearchResults: 20, initialWait: 100, pollInterval: 100, jobTimeout: 1000, fileSendMaxRetries: 1, transferMode: 'auto', cleanupJob: true, quickDownload: true, cooldown: 0, maxConcurrentJobs: 2, maxTextLength: 500, enableImage: false, imageWidth: 800, debug: false }
+const config = { apiBase: 'http://127.0.0.1:18423', apiPassword: '', maxSearchResults: 20, initialWait: 100, pollInterval: 100, jobTimeout: 1000, fileSendMaxRetries: 1, transferMode: 'auto', cleanupJob: true, quickDownload: true, cooldown: 0, maxConcurrentJobs: 2, maxTextLength: 500, enableImage: false, imageWidth: 800, debug: false }
 apply(ctx, config)
 
 const root = commands.get('tnd')

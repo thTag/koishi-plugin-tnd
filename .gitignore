@@ -30,3 +30,6 @@ coverage/
 # Temp
 *.tmp
 *.temp
+
+# 作者本机部署笔记，不随仓库发布
+DEPLOY.md

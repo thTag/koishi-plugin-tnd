@@ -2,7 +2,15 @@
 
 > 2.0.0 起非 OneBot 适配器（含 QQ 官方）发送文件改为返回消息元素，修复官机发送时崩进程的问题。变更见 [CHANGELOG](CHANGELOG.md)。
 
-在 Koishi 里搜索、预览并下载番茄小说（对接 [TND](https://tnd.th-dd.top) 服务）。
+在 Koishi 里搜索、预览并下载小说（对接**你自己部署**的 [TND](https://github.com/zhongbai2333/Tomato-Novel-Downloader) 服务）。
+
+## 声明
+
+- 本插件与**番茄小说**、**抖音**（及其母公司字节跳动）**没有任何关联**：非官方、未获授权、不代表其立场，也未使用其商标。
+- **本插件默认没有任何效力**。它只是 Koishi 侧的一个客户端，自身不具备搜索或下载能力；所有数据都来自你自行部署的 [Tomato-Novel-Downloader](https://github.com/zhongbai2333/Tomato-Novel-Downloader)（下称 TND）。不填 `apiBase`，插件什么都做不了。
+- 本仓库、文档和示例**不提供任何公共 TND 地址**，也不保证任何第三方实例可用。请自行部署，并对自己的实例负责。
+- 请仅将本插件用于个人阅读/备份你有权访问的内容，遵守当地法律与平台条款。使用本插件产生的后果由使用者自行承担。
+- 若你是权利人并认为本项目有不当之处，请开 issue，会及时处理。
 
 ## 安装
 
@@ -12,12 +20,29 @@ npm install koishi-plugin-novel-downloader
 
 可选安装 `koishi-plugin-puppeteer`，用于把搜索结果渲染成图片；不装也能用，只是发文字。
 
+## 自建 TND 服务
+
+插件只是客户端，必须自备一个 TND 实例，按 [TND 文档](https://github.com/zhongbai2333/Tomato-Novel-Downloader) 部署：
+
+```sh
+# Docker 最省事（glibc 镜像；软路由/NAS 用 :latest-musl）
+docker run -d --name tomato-novel-webui \
+  -p 18423:18423 -v /host/data:/data \
+  -e TOMATO_WEB_ADDR=0.0.0.0:18423 \
+  -e TOMATO_WEB_PASSWORD=你的密码 \
+  zhongbai233/tomato-novel-downloader-webui:latest --server --data-dir /data
+```
+
+- Web UI 默认监听 `127.0.0.1:18423`，本机部署时 `apiBase` 填 `http://127.0.0.1:18423`
+- 设了 `TOMATO_WEB_PASSWORD`（或 `--password`）就把同一个密码填到 `apiPassword`；没设锁留空
+- 只有 Koishi 与 TND 同机/同网络才能用内网地址；跨机请放在 HTTPS 反代后面，**务必开启密码锁**——TND 的 Web UI 面向自建/局域网，不建议裸奔公网
+
 ## 配置
 
 ```yaml
 plugins:
   novel-downloader:
-    apiBase: https://tnd.th-dd.top   # TND 服务地址（必填）
+    apiBase: http://127.0.0.1:18423   # 你自己部署的 TND 地址（必填）
     apiPassword: ''                  # 服务密码锁密码，未加锁留空
     maxSearchResults: 20             # 搜索结果最大显示数量
     initialWait: 8000                # 建任务后首次轮询前等待 (毫秒)
@@ -75,7 +100,7 @@ QQ 官方的结果用「序号」按钮，标签只有数字；截图用 `load` 
 npm i
 npm run typecheck
 npm test                             # 本地全量测试：不联网，自带 TND mock 服务
-npm run test:live                    # 打真服务跑搜索/预览/下载（可选）
+TND_BASE=http://127.0.0.1:18423 npm run test:live   # 打你自己部署的 TND（可选）
 npm run build && npm pack            # 产物 tgz
 yarn add ./koishi-plugin-novel-downloader-2.0.0.tgz   # 装进容器
 ```

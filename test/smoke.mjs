@@ -4,8 +4,12 @@ import { TndApi } from '../lib/api.js'
 import { sendNovelFile } from '../lib/transfer.js'
 import { splitText, textResult } from '../lib/render.js'
 
+if (!process.env.TND_BASE) {
+  console.log('提示：未设置 TND_BASE，按自建 TND 默认地址 http://127.0.0.1:18423 尝试')
+}
+
 const config = {
-  apiBase: 'https://tnd.th-dd.top',
+  apiBase: process.env.TND_BASE || 'http://127.0.0.1:18423',
   apiPassword: '',
   maxSearchResults: 5,
   initialWait: 1000,

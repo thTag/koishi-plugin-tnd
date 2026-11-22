@@ -23,7 +23,7 @@ const ctx = {
   command: (n) => { const c = makeCommand(n); commands.set(n, c); return c },
   middleware: () => () => {},
 }
-const config = { apiBase: 'https://tnd.th-dd.top', apiPassword: '', maxSearchResults: 5, initialWait: 1000, pollInterval: 1500, jobTimeout: 120000, fileSendMaxRetries: 2, transferMode: 'file', cleanupJob: true, quickDownload: true, cooldown: 0, maxConcurrentJobs: 2, maxTextLength: 500, enableImage: false, imageWidth: 800, debug: true }
+const config = { apiBase: process.env.TND_BASE || 'http://127.0.0.1:18423', apiPassword: '', maxSearchResults: 5, initialWait: 1000, pollInterval: 1500, jobTimeout: 120000, fileSendMaxRetries: 2, transferMode: 'file', cleanupJob: true, quickDownload: true, cooldown: 0, maxConcurrentJobs: 2, maxTextLength: 500, enableImage: false, imageWidth: 800, debug: true }
 apply(ctx, config)
 
 const sent = []

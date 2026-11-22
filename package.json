@@ -1,7 +1,7 @@
 {
   "name": "koishi-plugin-novel-downloader",
-  "version": "2.0.2",
-  "description": "番茄小说下载器 Koishi 插件（对接 TND 服务）",
+  "version": "2.0.3",
+  "description": "番茄小说下载器 Koishi 插件（只对接用户自建的 TND，与番茄/抖音无关）",
   "main": "lib/index.js",
   "typings": "lib/index.d.ts",
   "files": [
@@ -22,6 +22,8 @@
     "tomato",
     "novel",
     "tnd",
+    "tomato-novel-downloader",
+    "self-hosted",
     "小说",
     "番茄小说"
   ],
@@ -46,7 +48,7 @@
   },
   "koishi": {
     "description": {
-      "zh": "通过番茄小说下载器 API 实现小说搜索、预览和下载",
+      "zh": "通过自建的番茄小说下载器 API 实现小说搜索、预览和下载",
       "en": "Search, preview and download novels through the TND service"
     },
     "service": {
