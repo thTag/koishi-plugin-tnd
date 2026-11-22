@@ -47,12 +47,25 @@ jobs:
 
       - run: npm test
 
+      - name: 检查该版本是否已发布
+        id: published
+        run: |
+          VERSION="$(node -p "require('./package.json').version")"
+          if npm view "koishi-plugin-novel-downloader@$VERSION" version >/dev/null 2>&1; then
+            echo "已存在 $VERSION，跳过发布" >&2
+            echo "value=true" >> "$GITHUB_OUTPUT"
+          else
+            echo "value=false" >> "$GITHUB_OUTPUT"
+          fi
+
       - name: 发布到 npmjs
+        if: steps.published.outputs.value != 'true'
         run: npm publish --provenance --access public
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
 
       - name: 发布到 GitHub Packages
+        if: steps.published.outputs.value != 'true'
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
